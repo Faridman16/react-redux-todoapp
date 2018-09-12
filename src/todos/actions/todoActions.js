@@ -1,7 +1,6 @@
 //Import the Todo API 
 
 import { TodoApi } from "../../api/todoApi";
-import axios from 'axios';
 
 
 // These are the action type constants. Ordered by CRUD order. 
@@ -61,22 +60,6 @@ export function CreateTodoSuccess(todo){
     }
 }
 
-//BUATAN AING IE TEH KEHEUUUD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-export const addTodo = (todo)=>(dispatch)=>{
-    dispatch({
-        type:'ADD_TODO',
-        payload:{
-            todo
-        }
-    })
-}
-
-export const fetchTodos = ()=>(dispatch)=>{
-    dispatch({
-        type:'FETCH_TODOS',
-        payload: axios.get('http://localhost:3000/api/todos')
-    })
-}
 
 //Read
 export function GetTodos(){
@@ -140,7 +123,7 @@ export function DeleteTodo(todo) {
             todo
         })
         TodoApi.removeTodo(todo).then(res => {
-            if (res.status === 204) {
+            if (res.status == 204) {
                 dispatch(DeleteTodoSuccess(todo))
             }
         })

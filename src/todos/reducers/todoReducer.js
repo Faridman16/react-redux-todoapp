@@ -7,16 +7,10 @@ import * as TodoActions from '../actions/todoActions'
 // We are dividing the reducers using a technique called Reducer composition.
 // By doing this we are seperating the reducer for the Collection and the Individual Item
 
-const initialState = {
-    fetching_start:false,
-    fetching_complete:false,
-    error:null,
-    listTodos:[],
-}
 
 //The collection Reducer, It handles only the collection
 
-export function TodoListReducer(state = initialState, action) {
+export function TodoListReducer(state = [], action) {
     switch (action.type) {
 
         // The cases ordered in CRUD order.
@@ -28,27 +22,13 @@ export function TodoListReducer(state = initialState, action) {
                     action.todo
                 ];
         }
-
-        //BUATAN AING IE TEH KEHEUUUD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        case 'ADD_TODO':
-            return [...state, action.payload.todo]
             
-        case 'FETCH_TODOS_PENDING':
-            return {...state, fetching_start:true}
-
-        case 'FETCH_TODOS_REJECTED':
-            return {...state, fetching_start:false, error:action.payload}
-
-        case 'FETCH_TODOS_FULFILLED':
-            return {...state, fetching_start:false, fetching_complete:true, listTodos:action.payload.data.data.docs}            
-        
-            //Read    
+        //Read    
         case TodoActions.GET_TODOS_SUCCESS: {
             
             return action.todos.data.data.docs;
 
         }
-
         
         // The following Cases handle the data by mapping it. Mostly because they are related with the modification of a single Data
         

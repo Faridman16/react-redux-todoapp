@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-
 
 import {Button, Table} from 'semantic-ui-react'
 
@@ -8,7 +6,6 @@ import {Button, Table} from 'semantic-ui-react'
 // and maps the specific events to the methods of parent component 
 
 const TodoRow = (props) => {
-
     return (
 
         // getClass Name assigns the class names of this element 
@@ -29,7 +26,6 @@ const TodoRow = (props) => {
                 </Button>
             </Table.Cell>
         </Table.Row>
-
     );
 }
 
