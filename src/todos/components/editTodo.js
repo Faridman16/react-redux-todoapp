@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {addTodo} from '../actions/todoActions';
 
 import {Button, Icon, Label, Menu, Table} from 'semantic-ui-react'
 import {Input} from 'semantic-ui-react'
@@ -26,6 +29,32 @@ class EditTodo extends Component {
                 ...this.emptyTodo()
             }
         }
+    }
+
+    addTodo = ()=>{
+        var objTodo = {
+            title:this.state.title,
+            description:this.state.description,
+            date:this.state.date,
+        }
+        console.log(objTodo)
+
+        axios.post('http://localhost:3000/api/todos',objTodo)
+        .then(res=>{
+            this.props.addTodo(res.data)   
+            this.setState({
+                title:'',
+                description:'',
+                date:moment(),
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
+    }
+
+    componentWillMount(){
+        // console.log('this this is called');
     }
 
     //Initializes a Empty Todo Object
@@ -109,20 +138,24 @@ class EditTodo extends Component {
 
                 {/* The options component takes the inputs and decide if It's an option for a Edit Todo or Add New Todo */}
 
-                <Options
+                <Table.Cell>
+                    <Button color='blue' onClick={this.addTodo}>Add</Button>
+                    <Button>Cancel</Button>
+                </Table.Cell>
+
+                {/* <Options
                     todo={this.props.todo}    
                     editTodo={this.editTodo}
                     createTodo={this.createTodo}
                     resetTodo={this.resetTodo}
                     cancelEdit={this.cancelEditing}
-                />
+                /> */}
 
             </Table.Row>
         )
     }
 }
 
-export default EditTodo;
 
 
 // The option component decides the component usage
@@ -165,3 +198,5 @@ const AddOptions = (props) => {
     );
 }
 
+
+export default connect(null,{addTodo})(EditTodo);
