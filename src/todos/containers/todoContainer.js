@@ -12,6 +12,10 @@ export class TodoContainer extends Component {
         super(props)
     }
 
+    componentWillMount = ()=>{
+        this.props.actions.GetTodos()
+    }
+
     // Todo Container methods dispatch the actions to the reducer functions. Ordered by CRUD Order
 
     //Create

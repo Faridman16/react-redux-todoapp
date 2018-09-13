@@ -41,6 +41,12 @@ export class FaridContainer extends Component {
         date:this.state.date,
     }
 
+    this.setState({
+      _id:'',
+      title:'',
+      description:'',
+      date:moment(),
+    })
     this.props.createFaridTodo(objFaridTodo)
     
   }  

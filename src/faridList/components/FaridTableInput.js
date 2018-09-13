@@ -68,7 +68,7 @@ class FaridTableInput extends React.Component{
     }
 }
 
-FaridTableInput.prototype = {
+FaridTableInput.propTypes = {
     handleChange:PropTypes.func,
     handleChangeDate:PropTypes.func,
     data:PropTypes.object,
